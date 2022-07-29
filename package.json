@@ -1,0 +1,28 @@
+{
+  "name": "otakudesu-api",
+  "version": "0.0.1",
+  "description": "Unofficial otakudesu api",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/rzkfyn/otakudesu-api",
+  "author": "rzkfyn",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -e .ts --exec node --loader=ts-node/esm index.ts",
+    "build": "tsc --build ./tsconfig.json",
+    "start": "node ./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.6.2",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.1"
+  }
+}
