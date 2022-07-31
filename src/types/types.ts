@@ -14,6 +14,18 @@ type searchResultAnime = {
   url: string | undefined
 }
 
+type ongoingAnime = {
+  title: string | undefined,
+  slug: string | undefined,
+  poster: string | undefined,
+  currentEpisode: string | undefined,
+  releaseDay: string | undefined,
+  newestReleaseDate: string | undefined,
+  url: string | undefined
+}
+
 export {
-  genre, searchResultAnime
+  genre, 
+  searchResultAnime,
+  ongoingAnime
 }
