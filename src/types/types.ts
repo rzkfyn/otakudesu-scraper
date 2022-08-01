@@ -24,8 +24,19 @@ type ongoingAnime = {
   url: string | undefined
 }
 
+type completeAnime = {
+  title: string | undefined,
+  slug: string | undefined,
+  poster: string | undefined,
+  episodeCount: string | undefined,
+  rating: string | undefined,
+  lastReleaseDate: string | undefined,
+  url: string | undefined
+}
+
 export {
   genre, 
   searchResultAnime,
-  ongoingAnime
+  ongoingAnime,
+  completeAnime
 }
