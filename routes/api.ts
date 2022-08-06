@@ -11,4 +11,6 @@ api.get('/search/:keyword', handler.searchAnimeHandler);
 
 api.get('/ongoing-anime/:page?', handler.ongoingAnimeHandler);
 
+api.get('/complete-anime/:page?', handler.completeAnimeHandler);
+
 export default api;
