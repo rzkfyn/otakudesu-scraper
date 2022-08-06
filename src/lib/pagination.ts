@@ -21,7 +21,7 @@ const pagination = (html: string): false | {
 
   return {
     currentPage,
-    lastPage,
+    lastPage: currentPage < lastPage ? lastPage : currentPage,
     isHasNextPage,
     nextPage,
     isHasPreviousPage,
