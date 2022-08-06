@@ -77,8 +77,44 @@ const ongoingAnimeHandler = async (req: Request, res: Response) => {
   });
 }
 
+const completeAnimeHandler = async (req: Request, res: Response) => {
+  const { page } = req.params;
+  if (page) {
+    if (!parseInt(page)) return res.status(400).json({
+      status: 'Errpr',
+      message: 'The page parameter must be a number!'
+    });
+  }
+  
+  let result;
+  try {
+    result = page ? await otakudesu.completeAnime(parseInt(page)) : await otakudesu.completeAnime();
+  } catch(e) {
+    console.log(e);
+    return res.status(500).json({
+      status: 'Error',
+      message: 'Internal server error'
+    });
+  }
+
+  const { paginationData, completeAnimeData } = result;
+
+  if (!paginationData) return res.status(404).json({
+    status: 'Error',
+    message: 'There\'s nothing here ;_;'
+  });
+
+  return res.status(200).json({
+    status: 'Ok',
+    message: 'Otakudesu unofficial api made by rzkfyn with <3',
+    ...paginationData,
+    data: completeAnimeData
+  });
+}
+
 export default {
   searchAnimeHandler,
   homeHandler,
-  ongoingAnimeHandler
+  ongoingAnimeHandler,
+  completeAnimeHandler
 }
