@@ -15,10 +15,10 @@ const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
       title: $('.detpost .thumb .thumbz .jdlflm').text(),
       slug: $('.detpost .thumb a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
       poster: $('.detpost .thumb .thumbz img').attr('src'),
-      currentEpisode: $('.detpost .epz').text().trim(),
-      releaseDay: $('.detpost .epztipe').text().trim(),
-      newestReleaseDate: $('.detpost .newnime').text(),
-      url: $('.detpost .thumb a').attr('href')
+      current_episode: $('.detpost .epz').text().trim(),
+      release_day: $('.detpost .epztipe').text().trim(),
+      newest_release_date: $('.detpost .newnime').text(),
+      otakudesu_url: $('.detpost .thumb a').attr('href')
     });
   });
 

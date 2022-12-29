@@ -18,20 +18,20 @@ type ongoingAnime = {
   title: string | undefined,
   slug: string | undefined,
   poster: string | undefined,
-  currentEpisode: string | undefined,
-  releaseDay: string | undefined,
-  newestReleaseDate: string | undefined,
-  url: string | undefined
+  current_episode: string | undefined,
+  release_day: string | undefined,
+  newest_release_date: string | undefined,
+  otakudesu_url: string | undefined
 }
 
 type completeAnime = {
   title: string | undefined,
   slug: string | undefined,
   poster: string | undefined,
-  episodeCount: string | undefined,
+  episode_count: string | undefined,
   rating: string | undefined,
-  lastReleaseDate: string | undefined,
-  url: string | undefined
+  last_release_date: string | undefined,
+  otakudesu_url: string | undefined
 }
 
 export {

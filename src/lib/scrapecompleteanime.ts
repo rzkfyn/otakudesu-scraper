@@ -15,10 +15,10 @@ const scrapeCompleteAnime = (html: string): completeAnime[] => {
       title: $('.detpost .thumb .thumbz .jdlflm').text(),
       slug: $('.detpost .thumb a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
       poster: $('.detpost .thumb .thumbz img').attr('src'),
-      episodeCount: $('.detpost .epz').text().trim(),
+      episode_count: $('.detpost .epz').text().trim(),
       rating: $('.detpost .epztipe').text().trim(),
-      lastReleaseDate: $('.detpost .newnime').text(),
-      url: $('.detpost .thumb a').attr('href')
+      last_release_date: $('.detpost .newnime').text(),
+      otakudesu_url: $('.detpost .thumb a').attr('href')
     });
   });
 
