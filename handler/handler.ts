@@ -32,6 +32,7 @@ const ongoingAnimeHandler = async (req: Request, res: Response) => {
   const { page } = req.params;
   if (page) {
     if (!parseInt(page)) return res.status(400).json({ status: 'Error', message: 'The page parameter must be a number!' });
+    if (parseInt(page) < 1) return res.status(400).json({ status: 'Error', message: 'The page parameter must be greater than 0!' });
   }
   
   let result;
@@ -51,6 +52,7 @@ const completeAnimeHandler = async (req: Request, res: Response) => {
   const { page } = req.params;
   if (page) {
     if (!parseInt(page)) return res.status(400).json({ status: 'Error', message: 'The page parameter must be a number!' });
+    if (parseInt(page) < 1) return res.status(400).json({ status: 'Error', message: 'The page parameter must be greater than 0!' });
   }
   
   let result;
@@ -101,10 +103,27 @@ const episodeByEpisodeSlugHandler = async (req: Request, res: Response) => {
 
   let data;
   try {
-    data = await otakudesu.episode(slug);
+    data = await otakudesu.episode({ episodeSlug:  slug });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ status: 'Ok', message: 'Internal server error' });
+  }
+
+  if (!data) return res.status(404).json({ status: 'Error', message: 'There\'s nothing here ;_;' });
+  return res.status(200).json({ status: 'Ok', data });
+};
+
+const episodeByEpisodeNumberHandler = async (req: Request, res: Response) => {
+  const { slug: animeSlug, episode } = req.params;
+  if (!parseInt(episode)) return res.status(400).json({ status: 'Error', message: 'The episode NUMBER parameter must be a NUMBER!' });
+  if (parseInt(episode) < 1) return res.status(400).json({ status: 'Error', message: 'The episode number parameter must be greater than 0!' });
+
+  let data;
+  try {
+    data = await otakudesu.episode({ animeSlug, episodeNumber: parseInt(episode) - 1 });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Error', message: 'Internal server error' });
   }
 
   if (!data) return res.status(404).json({ status: 'Error', message: 'There\'s nothing here ;_;' });
@@ -118,5 +137,6 @@ export default {
   episodesHandler,
   ongoingAnimeHandler,
   completeAnimeHandler,
-  episodeByEpisodeSlugHandler
+  episodeByEpisodeSlugHandler,
+  episodeByEpisodeNumberHandler
 };

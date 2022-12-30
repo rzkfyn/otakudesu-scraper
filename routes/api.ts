@@ -17,8 +17,8 @@ api.get('/anime/:slug', handler.singleAnimeHandler);
 
 api.get('/anime/:slug/episodes', handler.episodesHandler);
 
-api.get('/episode/:slug', handler.episodeByEpisodeSlugHandler);
+api.get('/anime/:slug/episodes/:episode', handler.episodeByEpisodeNumberHandler);
 
-// api.get('/anime/:slug/episodes/:episode', handler.episodeByEpisodeNumberHandler);
+api.get('/episode/:slug', handler.episodeByEpisodeSlugHandler);
 
 export default api;
