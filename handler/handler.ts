@@ -96,6 +96,21 @@ const episodesHandler = async (req: Request, res: Response) => {
   return res.status(200).json({ status: 'Ok', data });
 };
 
+const episodeByEpisodeSlugHandler = async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  let data;
+  try {
+    data = await otakudesu.episode(slug);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Ok', message: 'Internal server error' });
+  }
+
+  if (!data) return res.status(404).json({ status: 'Error', message: 'There\'s nothing here ;_;' });
+  return res.status(200).json({ status: 'Ok', data });
+};
+
 export default {
   searchAnimeHandler,
   homeHandler,
@@ -103,4 +118,5 @@ export default {
   episodesHandler,
   ongoingAnimeHandler,
   completeAnimeHandler,
+  episodeByEpisodeSlugHandler
 };
