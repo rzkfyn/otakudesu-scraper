@@ -1,11 +1,13 @@
-import search from './utils/search.js';
 import home from './utils/home.js';
-import ongoingAnime from './utils/ongoinganime.js';
-import completeAnime from './utils/completeanime.js';
+import anime from './utils/anime.js';
+import search from './utils/search.js';
+import ongoingAnime from './utils/ongoingAnime.js';
+import completeAnime from './utils/completeAnime.js';
 
 export default {
-  search,
   home,
+  anime,
+  search,
   ongoingAnime,
   completeAnime
-}
+};

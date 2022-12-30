@@ -13,4 +13,6 @@ api.get('/ongoing-anime/:page?', handler.ongoingAnimeHandler);
 
 api.get('/complete-anime/:page?', handler.completeAnimeHandler);
 
+api.get('/anime/:slug', handler.singleAnimeHandler);
+
 export default api;

@@ -1,19 +1,20 @@
 import { load } from 'cheerio';
 import { BASEURL } from '../../config.js';
-import { genre as genreType, searchResultAnime } from '../types/types.js';
+import mapGenres from './mapGenres.js';
+import type { searchResultAnime } from '../types/types.js';
 
-const scrapesearchresult = (html: string): searchResultAnime[] => {
+const scrapeSearchResult = (html: string): searchResultAnime[] => {
   const $ = load(html);
   const animes = $('.chivsrc li').toString()
-  .split('</li>')
-  .filter(item => item.trim() !== '')
-  .map(item => `${item}</li>`);
+    .split('</li>')
+    .filter(item => item.trim() !== '')
+    .map(item => `${item}</li>`);
   const searchResult: searchResultAnime[] = [];
 
   animes.forEach(anime => {
     const $ = load(anime);
     const genres = mapGenres($('.set:nth-child(3)')?.html()?.toString()
-    .replace('<b>Genres</b> : ', '') as string);
+      .replace('<b>Genres</b> : ', '') as string);
 
     searchResult.push({
       title: $('h2 a').text(),
@@ -27,25 +28,6 @@ const scrapesearchresult = (html: string): searchResultAnime[] => {
   });
 
   return searchResult;
-}
+};
 
-const mapGenres = (html: string): genreType[] => {
-  const result: genreType[] = [];
-  const genres = html.split('</a>')
-  .filter(item => item.trim() !== '')
-  .map(item => `${item}</a>`);
-
-  genres.forEach(genre => {
-    const $ = load(genre);
-
-    result.push({
-      name: $('a').text(),
-      slug: $('a').attr('href')?.replace(`${BASEURL}/genres/`, '').replace('/', ''),
-      url: $('a').attr('href')
-    });
-  });
-
-  return result;
-}
-
-export default scrapesearchresult;
+export default scrapeSearchResult;

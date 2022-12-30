@@ -25,7 +25,7 @@ const pagination = (html: string): false | {
     next_page,
     has_previous_page,
     previous_page    
-  }
-}
+  };
+};
 
 export default pagination;

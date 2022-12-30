@@ -1,42 +1,67 @@
-type genre = {
-  name: string | undefined,
-  slug: string | undefined,
-  url: string | undefined
-}
+type anime = {
+  title: string | undefined,
+  japanese_title: string | undefined,
+  poster: string | undefined,
+  rating: string | undefined,
+  produser: string | undefined,
+  type: string | undefined,
+  status: string | undefined,
+  episode_count: string | undefined,
+  duration: string | undefined,
+  release_date: string | undefined,
+  studio: string | undefined,
+  genres: genre[],
+  synopsis: string | undefined,
+  episode_lists: episode_list[],
+};
 
 type searchResultAnime = {
-  title: string | undefined,
-  slug: string | undefined,
-  poster: string | undefined,
-  status: string | undefined,
-  rating: string | undefined,
-  genres: genre[],
-  url: string | undefined
-}
+  title: string | undefined;
+  slug: string | undefined;
+  poster: string | undefined;
+  status: string | undefined;
+  rating: string | undefined;
+  genres: genre[];
+  url: string | undefined;
+};
 
 type ongoingAnime = {
-  title: string | undefined,
-  slug: string | undefined,
-  poster: string | undefined,
-  current_episode: string | undefined,
-  release_day: string | undefined,
-  newest_release_date: string | undefined,
-  otakudesu_url: string | undefined
-}
+  title: string | undefined;
+  slug: string | undefined;
+  poster: string | undefined;
+  current_episode: string | undefined;
+  release_day: string | undefined;
+  newest_release_date: string | undefined;
+  otakudesu_url: string | undefined;
+};
 
 type completeAnime = {
-  title: string | undefined,
+  title: string | undefined;
+  slug: string | undefined;
+  poster: string | undefined;
+  episode_count: string | undefined;
+  rating: string | undefined;
+  last_release_date: string | undefined;
+  otakudesu_url: string | undefined;
+};
+
+type genre = {
+  name: string | undefined;
+  slug: string | undefined;
+  url: string | undefined;
+};
+
+type episode_list = {
+  episode: string | undefined,
   slug: string | undefined,
-  poster: string | undefined,
-  episode_count: string | undefined,
-  rating: string | undefined,
-  last_release_date: string | undefined,
   otakudesu_url: string | undefined
-}
+};
 
 export {
-  genre, 
+  anime,
   searchResultAnime,
   ongoingAnime,
-  completeAnime
-}
+  completeAnime,
+  genre,
+  episode_list
+};

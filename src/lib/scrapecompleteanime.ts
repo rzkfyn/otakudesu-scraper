@@ -1,12 +1,12 @@
 import { load } from 'cheerio';
 import { BASEURL } from '../../config.js';
-import { completeAnime } from '../types/types.js';
+import type { completeAnime } from '../types/types.js';
 
 const scrapeCompleteAnime = (html: string): completeAnime[] => {
   const result: completeAnime[] = [];
   const animes = html.split('</li>')
-  .filter(item => item.trim() !== '')
-  .map(item => `${item}</li>`);
+    .filter(item => item.trim() !== '')
+    .map(item => `${item}</li>`);
 
   animes.forEach(anime => {
     const $ = load(anime);
@@ -15,7 +15,7 @@ const scrapeCompleteAnime = (html: string): completeAnime[] => {
       title: $('.detpost .thumb .thumbz .jdlflm').text(),
       slug: $('.detpost .thumb a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
       poster: $('.detpost .thumb .thumbz img').attr('src'),
-      episode_count: $('.detpost .epz').text().trim(),
+      episode_count: $('.detpost .epz').text().trim().replace(' Episode', ''),
       rating: $('.detpost .epztipe').text().trim(),
       last_release_date: $('.detpost .newnime').text(),
       otakudesu_url: $('.detpost .thumb a').attr('href')
@@ -23,6 +23,6 @@ const scrapeCompleteAnime = (html: string): completeAnime[] => {
   });
 
   return result;
-}
+};
 
 export default scrapeCompleteAnime;

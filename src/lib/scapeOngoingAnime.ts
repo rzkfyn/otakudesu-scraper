@@ -1,12 +1,12 @@
 import { load } from 'cheerio';
 import { BASEURL } from '../../config.js';
-import { ongoingAnime } from '../types/types.js';
+import type { ongoingAnime } from '../types/types.js';
 
 const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
   const result: ongoingAnime[] = [];
   const animes = html.split('</li>')
-  .filter(item => item.trim() !== '')
-  .map(item => `${item}</li>`);
+    .filter(item => item.trim() !== '')
+    .map(item => `${item}</li>`);
 
   animes.forEach(anime => {
     const $ = load(anime);
@@ -23,6 +23,6 @@ const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
   });
 
   return result;
-}
+};
 
 export default scrapeOngoingAnime;

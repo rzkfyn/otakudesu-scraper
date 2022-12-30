@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASEURL } from '../../config.js';
-import scrapesearchresult from '../lib/scrapesearchresult.js';
+import scrapesearchresult from '../lib/scrapeSearchResult.js';
 import { searchResultAnime } from '../types/types.js';
 
 const search = async (keyword: string): Promise<searchResultAnime[]> => {
@@ -8,6 +8,6 @@ const search = async (keyword: string): Promise<searchResultAnime[]> => {
   const html = response.data;
   const searchResult = scrapesearchresult(html);
   return searchResult;
-}
+};
 
 export default search;
