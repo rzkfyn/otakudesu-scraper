@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import otakudesu from '../src/otakudesu.js';
-import type { anime as animeType, ongoingAnime, searchResultAnime } from '../src/types/types.js';
+import type { anime as animeType, episode_list, ongoingAnime, searchResultAnime } from '../src/types/types.js';
 
 const searchAnimeHandler = async (req: Request, res: Response) => {
   const { keyword } = req.params;
@@ -81,10 +81,26 @@ const singleAnimeHandler = async (req: Request, res: Response) => {
   return res.status(200).json({ status: 'Ok', data });
 };
 
+const episodesHandler = async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  let data: episode_list[] | undefined;
+  try {
+    data = await otakudesu.episodes(slug);
+  } catch(e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Error', message: 'Internal server error' });
+  }
+
+  if (!data) return res.status(404).json({ status: 'Error', message: 'There\'s nothing here ;_;' });
+  return res.status(200).json({ status: 'Ok', data });
+};
+
 export default {
   searchAnimeHandler,
   homeHandler,
+  singleAnimeHandler,
+  episodesHandler,
   ongoingAnimeHandler,
   completeAnimeHandler,
-  singleAnimeHandler
 };

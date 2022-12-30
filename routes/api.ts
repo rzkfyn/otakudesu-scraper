@@ -15,4 +15,6 @@ api.get('/complete-anime/:page?', handler.completeAnimeHandler);
 
 api.get('/anime/:slug', handler.singleAnimeHandler);
 
+api.get('/anime/:slug/episodes', handler.episodesHandler);
+
 export default api;

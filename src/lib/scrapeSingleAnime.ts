@@ -1,6 +1,6 @@
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import mapGenres from './mapGenres.js';
+import scrapeAnimeEpisodes from './scrapeAnimeEpisodes.js';
 import type { anime, episode_list } from '../types/types.js';
 
 const scrapeSingleAnime = (html: string) => {
@@ -9,7 +9,7 @@ const scrapeSingleAnime = (html: string) => {
     $('.infozin .infozingle').toString(),
     getPoster(html),
     getSynopsis(html),
-    getEpisodeLists(html)
+    scrapeAnimeEpisodes(html)
   );
   return result;
 };
@@ -47,25 +47,6 @@ const getPoster = (html: string): string | undefined => {
   const $ = load(html);
   const poster = $('.fotoanime img').attr('src');
   return poster;
-};
-
-const getEpisodeLists = (html: string): episode_list[] | undefined => {
-  const result: episode_list[] = [];
-  let $ = load(html);
-  $ = load(`<div> ${$('.episodelist').toString()}</div>`);
-  const episodeList = $('.episodelist:nth-child(2) ul').html()?.split('</li>').filter(item => item.trim() !== '').map(item => `${item}</li>`);
-
-  if (!episodeList) return undefined;
-
-  for (const episode of episodeList) {
-    const $ = load(episode);
-    result.unshift({
-      episode: $('li span:first a')?.text(),
-      slug: $('li span:first a')?.attr('href')?.replace(`${BASEURL}/episode/`, '').replace('/', ''),
-      otakudesu_url: $('li span:first a')?.attr('href')
-    });
-  }
-  return result;
 };
 
 export default scrapeSingleAnime;
