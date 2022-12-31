@@ -1,7 +1,8 @@
 import { load, CheerioAPI } from 'cheerio';
 import { BASEURL } from '../../config.js';
+import { episode } from '../types/types.js';
 
-const scrapeEpisode = async (html: string) => {
+const scrapeEpisode = (html: string): episode | undefined => {
   const $ = load(html);
   const episode = getEpisodeTitle($);
   const stream_url = getStreamUrl($);
@@ -51,23 +52,23 @@ const getMp4DownloadUrls = ($: CheerioAPI) => {
 
   for (const el of mp4DownloadEls) {
     const $ = load(el);
-    const urls = $('a')
+    const downloadUrls = $('a')
       .toString()
       .split('</a>')
       .filter((item) => item.trim() !== '')
       .map((item) => `${item}</a>`);
-    const links = [];
+    const urls = [];
 
-    for (const url of urls) {
-      const $ = load(url);
-      links.push({
+    for (const downloadUrl of downloadUrls) {
+      const $ = load(downloadUrl);
+      urls.push({
         provider: $('a').text(),
         url: $('a').attr('href'),
       });
     }
     result.push({
       resolution: $('strong').text()?.replace(/([A-z][A-z][0-9] )/, ''),
-      links,
+      urls,
     });
   }
 
@@ -84,23 +85,23 @@ const getMkvDownloadUrls = ($: CheerioAPI) => {
 
   for (const el of mp4DownloadEls) {
     const $ = load(el);
-    const urls = $('a')
+    const downloadUrls = $('a')
       .toString()
       .split('</a>')
       .filter((item) => item.trim() !== '')
       .map((item) => `${item}</a>`);
-    const links = [];
+    const urls = [];
 
-    for (const url of urls) {
+    for (const url of downloadUrls) {
       const $ = load(url);
-      links.push({
+      urls.push({
         provider: $('a').text(),
         url: $('a').attr('href'),
       });
     }
     result.push({
       resolution: $('strong').text()?.replace(/([A-z][A-z][A-z] )/, ''),
-      links,
+      urls,
     });
   }
 

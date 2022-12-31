@@ -57,11 +57,47 @@ type episode_list = {
   otakudesu_url: string | undefined
 };
 
+type episode = {
+  episode: string;
+  anime: {
+    slug: string | undefined;
+    otakudesu_url: string | undefined;
+  };
+  has_next_episode: boolean;
+  next_episode: {
+    slug: string | undefined;
+    otakudesu_url: string | undefined;
+  } | null;
+  has_previous_episode: boolean;
+  previous_episode: {
+    slug: string | undefined;
+    otakudesu_url: string | undefined;
+  } | null;
+  stream_url: string | undefined;
+  download_urls: {
+    mp4: {
+      resolution: string | undefined;
+      urls: {
+        provider: string | undefined;
+        url: string | undefined;
+      }[];
+    }[];
+    mkv: {
+      resolution: string | undefined;
+      urls: {
+        provider: string | undefined;
+        url: string | undefined;
+      }[];
+    }[];
+  };
+};
+
 export {
   anime,
   searchResultAnime,
   ongoingAnime,
   completeAnime,
   genre,
-  episode_list
+  episode_list,
+  episode
 };
