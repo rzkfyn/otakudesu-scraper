@@ -12,6 +12,11 @@ type anime = {
   studio: string | undefined,
   genres: genre[],
   synopsis: string | undefined,
+  batch: {
+    slug: string | undefined,
+    otakudesu_url: string | undefined,
+    uploaded_at: string | undefined,
+  } | null;
   episode_lists: episode_list[],
 };
 

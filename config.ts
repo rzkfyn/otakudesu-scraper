@@ -1,4 +1,4 @@
-const BASEURL = 'https://otakudesu.bid';
+const BASEURL = 'https://otakudesu.is';
 
 export {
   BASEURL
