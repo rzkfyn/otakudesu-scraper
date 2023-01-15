@@ -1,23 +1,29 @@
 type anime = {
-  title: string | undefined,
-  japanese_title: string | undefined,
-  poster: string | undefined,
-  rating: string | undefined,
-  produser: string | undefined,
-  type: string | undefined,
-  status: string | undefined,
-  episode_count: string | undefined,
-  duration: string | undefined,
-  release_date: string | undefined,
-  studio: string | undefined,
-  genres: genre[],
-  synopsis: string | undefined,
+  title: string | undefined;
+  japanese_title: string | undefined;
+  poster: string | undefined;
+  rating: string | undefined;
+  produser: string | undefined;
+  type: string | undefined;
+  status: string | undefined;
+  episode_count: string | undefined;
+  duration: string | undefined;
+  release_date: string | undefined;
+  studio: string | undefined;
+  genres: genre[];
+  synopsis: string | undefined;
   batch: {
-    slug: string | undefined,
-    otakudesu_url: string | undefined,
-    uploaded_at: string | undefined,
+    slug: string | undefined;
+    otakudesu_url: string | undefined;
+    uploaded_at: string | undefined;
   } | null;
-  episode_lists: episode_list[],
+  episode_lists: episode_list[];
+  recommendations: {
+    title: string | undefined;
+    slug: string | undefined;
+    poster: string | undefined;
+    otakudesu_url: string | undefined;
+  }[];
 };
 
 type searchResultAnime = {
@@ -57,8 +63,8 @@ type genre = {
 };
 
 type episode_list = {
-  episode: string | undefined,
-  slug: string | undefined,
+  episode: string | undefined;
+  slug: string | undefined;
   otakudesu_url: string | undefined
 };
 

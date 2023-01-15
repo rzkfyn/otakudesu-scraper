@@ -30,11 +30,12 @@ const createAnimeData = (
   const studio = $('.infozin .infozingle p:nth-child(10) span').text()?.replace('Studio: ', '');
   const genres = mapGenres($('.infozin .infozingle p:last span a').toString());
   const batch = getBatch($('.venser #serieslist ~ .episodelist ul li:first-child').toString());
+  const recommendations = getRecomendations($('#recommend-anime-series .isi-recommend-anime-series .isi-konten').toString());
 
   if(!episode_lists) return undefined;
 
   return {
-    title, japanese_title, poster, rating, produser, type, status, episode_count, duration, release_date, studio, genres, synopsis, batch, episode_lists
+    title, japanese_title, poster, rating, produser, type, status, episode_count, duration, release_date, studio, genres, synopsis, batch, episode_lists, recommendations
   };
 };
 
@@ -61,6 +62,34 @@ const getPoster = (html: string): string | undefined => {
   const $ = load(html);
   const poster = $('.fotoanime img').attr('src');
   return poster;
+};
+
+const getRecomendations = (html: string) => {
+  const result: {
+    title: string | undefined,
+    slug: string | undefined,
+    poster: string | undefined,
+    otakudesu_url: string | undefined
+  }[] = [];
+  const animeEls = html.split('</div></div></div>')
+    .filter((el) => el.trim() !== '')
+    .map((el) => `${el}</div></div></div>`);
+
+  animeEls.forEach((el) => {
+    const $ = load(el);
+    const title = $('.judul-anime').text();
+    const poster = $('.isi-anime img').attr('src');
+    const otakudesu_url = $('.isi-anime a').attr('href');
+    const slug = otakudesu_url?.replace(`${BASEURL}/anime/`, '').replace('/', '');
+    result.push({
+      title,
+      slug,
+      poster,
+      otakudesu_url
+    });
+  });
+
+  return result;
 };
 
 export default scrapeSingleAnime;
