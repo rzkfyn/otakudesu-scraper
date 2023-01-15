@@ -5,7 +5,6 @@ import scrapeAnimeEpisodes from './scrapeAnimeEpisodes.js';
 import type { anime, episode_list } from '../types/types.js';
 
 const scrapeSingleAnime = (html: string) => {
-  const $ = load(html);
   const result = createAnimeData(
     html,
     getPoster(html),
@@ -41,8 +40,8 @@ const createAnimeData = (
 
 const getSynopsis = (html: string) => {
   const $ = load(html);
-  const sinopsis = $('.sinopc').text().split('<p>').map(item => item.replace('</p>', '\n').replace('&nbsp', '')).join('');
-  return sinopsis;
+  const synopsis = $('.sinopc').text().split('<p>').map(item => item.replace('</p>', '\n').replace('&nbsp', '')).join('');
+  return synopsis;
 };
 
 const getBatch = (html: string) => {
@@ -51,7 +50,7 @@ const getBatch = (html: string) => {
   const batch = $('span:first-child a').attr('href');
   const uploaded_at = $('span.zeebr:first').text();
 
-  return {
+  return batch?.match('episode') ? null : {
     slug: batch?.replace(`${BASEURL}/batch/`, '').replace('/', ''),
     otakudesu_url: batch,
     uploaded_at

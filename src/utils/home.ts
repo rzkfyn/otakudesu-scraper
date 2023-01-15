@@ -8,17 +8,17 @@ import {
   completeAnime as completeAnimeType 
 } from '../types/types.js';
 
-const home = async (): Promise<{ ongoingAnime: ongoingAnimeType[], completeAnime: completeAnimeType[] }> => {
+const home = async (): Promise<{ ongoing_anime: ongoingAnimeType[], complete_anime: completeAnimeType[] }> => {
   const { data } = await axios.get(BASEURL);
   const $ = load(data);
   const ongoingAnimeEls = $('.venutama .rseries .rapi:first .venz ul li').toString();
   const completeAnimeEls = $('.venutama .rseries .rapi:last .venz ul li').toString();
-  const ongoingAnime = scrapeOngoingAnime(ongoingAnimeEls);
-  const completeAnime = scrapeCompleteAnime(completeAnimeEls);
+  const ongoing_anime = scrapeOngoingAnime(ongoingAnimeEls);
+  const complete_anime = scrapeCompleteAnime(completeAnimeEls);
 
   return {
-    ongoingAnime,
-    completeAnime
+    ongoing_anime,
+    complete_anime
   };
 };
 

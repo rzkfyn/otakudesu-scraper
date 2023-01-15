@@ -1,6 +1,12 @@
 import { Request, Response } from 'express';
 import otakudesu from '../src/otakudesu.js';
-import type { anime as animeType, episode_list, ongoingAnime, searchResultAnime } from '../src/types/types.js';
+import type {
+  anime as animeType,
+  ongoingAnime,
+  completeAnime,
+  episode_list,
+  searchResultAnime
+} from '../src/types/types.js';
 
 const searchAnimeHandler = async (req: Request, res: Response) => {
   const { keyword } = req.params;
@@ -17,7 +23,7 @@ const searchAnimeHandler = async (req: Request, res: Response) => {
 };
 
 const homeHandler = async (_: Request, res: Response)  => {
-  let data: { ongoingAnime: ongoingAnime[] };
+  let data: { ongoing_anime: ongoingAnime[], complete_anime: completeAnime[] };
   try {
     data = await otakudesu.home();
   } catch(e) {
