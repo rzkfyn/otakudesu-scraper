@@ -1,9 +1,9 @@
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import mapGenres from './mapGenres.js';
 import scrapeAnimeEpisodes from './scrapeAnimeEpisodes.js';
 import type { anime, episode_list } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const scrapeSingleAnime = (html: string) => {
   const result = createAnimeData(
     html,

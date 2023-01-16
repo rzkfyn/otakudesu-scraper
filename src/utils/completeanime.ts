@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import pagination from '../lib/pagination.js';
 import scrapeCompleteAnime from '../lib/scrapeCompleteAnime.js';
 
+const { BASEURL } = process.env;
 const completeAnime = async (page: number | string = 1) => {
   const { data } = await  axios.get(`${BASEURL}/complete-anime/page/${page}`);
   const  $ = load(data);

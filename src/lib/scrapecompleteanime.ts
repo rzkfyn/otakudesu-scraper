@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import type { completeAnime } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const scrapeCompleteAnime = (html: string): completeAnime[] => {
   const result: completeAnime[] = [];
   const animes = html.split('</li>')

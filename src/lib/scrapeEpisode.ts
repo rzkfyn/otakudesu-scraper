@@ -1,7 +1,7 @@
 import { load, CheerioAPI } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import type { episode as episodeType } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const scrapeEpisode = (html: string): episodeType | undefined => {
   const $ = load(html);
   const episode = getEpisodeTitle($);

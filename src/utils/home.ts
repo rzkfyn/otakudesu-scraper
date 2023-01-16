@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import scrapeOngoingAnime from '../lib/scapeOngoingAnime.js';
 import scrapeCompleteAnime from '../lib/scrapeCompleteAnime.js';
 import { 
@@ -8,8 +7,9 @@ import {
   completeAnime as completeAnimeType 
 } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const home = async (): Promise<{ ongoing_anime: ongoingAnimeType[], complete_anime: completeAnimeType[] }> => {
-  const { data } = await axios.get(BASEURL);
+  const { data } = await axios.get(BASEURL as string);
   const $ = load(data);
   const ongoingAnimeEls = $('.venutama .rseries .rapi:first .venz ul li').toString();
   const completeAnimeEls = $('.venutama .rseries .rapi:last .venz ul li').toString();

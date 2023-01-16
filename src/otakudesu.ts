@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import home from './utils/home.js';
 import anime from './utils/anime.js';
 import episodes from './utils/episodes.js';

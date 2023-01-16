@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import type { episode_list } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const scrapeAnimeEpisodes = (html: string): episode_list[] | undefined => {
   const result: episode_list[] = [];
   let $ = load(html);

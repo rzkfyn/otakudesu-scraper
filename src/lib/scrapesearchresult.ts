@@ -1,8 +1,8 @@
 import { load } from 'cheerio';
-import { BASEURL } from '../../config.js';
 import mapGenres from './mapGenres.js';
 import type { searchResultAnime } from '../types/types.js';
 
+const { BASEURL } = process.env;
 const scrapeSearchResult = (html: string): searchResultAnime[] => {
   const $ = load(html);
   const animes = $('.chivsrc li').toString()

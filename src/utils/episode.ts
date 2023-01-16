@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { BASEURL } from '../../config.js';
 import episodes from './episodes.js';
 import scrapeEpisode from '../lib/scrapeEpisode.js';
 
+const { BASEURL } = process.env;
 const episode = async ({ episodeSlug, animeSlug, episodeNumber }: {
   episodeSlug?: string | undefined, animeSlug?: string | undefined, episodeNumber?: number | undefined
 }) => {
