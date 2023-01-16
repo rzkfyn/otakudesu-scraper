@@ -14,7 +14,7 @@ const mapGenres = (html: string): genreType[] => {
     result.push({
       name: $('a').text(),
       slug: $('a').attr('href')?.replace(`${BASEURL}/genres/`, '').replace('/', ''),
-      url: $('a').attr('href')
+      otakudesu_url: $('a').attr('href')
     });
   });
 

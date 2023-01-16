@@ -59,7 +59,7 @@ type completeAnime = {
 type genre = {
   name: string | undefined;
   slug: string | undefined;
-  url: string | undefined;
+  otakudesu_url: string | undefined;
 };
 
 type episode_list = {
@@ -103,6 +103,18 @@ type episode = {
   };
 };
 
+type batch = {
+  batch: string | undefined;
+  download_urls: {
+    resolution: string | undefined;
+    file_size: string | undefined;
+    urls: {
+      provider: string | undefined;
+      url: string | undefined;
+    }[];
+  }[];
+}
+
 export {
   anime,
   searchResultAnime,
@@ -110,5 +122,6 @@ export {
   completeAnime,
   genre,
   episode_list,
-  episode
+  episode,
+  batch
 };

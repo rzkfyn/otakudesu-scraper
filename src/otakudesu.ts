@@ -6,6 +6,7 @@ import episode from './utils/episode.js';
 import search from './utils/search.js';
 import ongoingAnime from './utils/ongoingAnime.js';
 import completeAnime from './utils/completeAnime.js';
+import batch from './utils/batch.js';
 
 export default {
   home,
@@ -14,5 +15,6 @@ export default {
   episode,
   search,
   ongoingAnime,
-  completeAnime
+  completeAnime,
+  batch
 };

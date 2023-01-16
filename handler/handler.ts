@@ -136,6 +136,20 @@ const episodeByEpisodeNumberHandler = async (req: Request, res: Response) => {
   return res.status(200).json({ status: 'Ok', data });
 };
 
+const batchByBatchSlugHandler = async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  let data;
+  try {
+    data = await otakudesu.batch(slug);
+  } catch(e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Error', message: 'Internal server error' });
+  }
+
+  return res.status(200).json({ status: 'Ok', data });
+};
+
 export default {
   searchAnimeHandler,
   homeHandler,
@@ -144,5 +158,6 @@ export default {
   ongoingAnimeHandler,
   completeAnimeHandler,
   episodeByEpisodeSlugHandler,
-  episodeByEpisodeNumberHandler
+  episodeByEpisodeNumberHandler,
+  batchByBatchSlugHandler
 };
