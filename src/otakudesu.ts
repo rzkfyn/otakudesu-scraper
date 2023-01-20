@@ -7,6 +7,7 @@ import search from './utils/search.js';
 import ongoingAnime from './utils/ongoingAnime.js';
 import completeAnime from './utils/completeAnime.js';
 import batch from './utils/batch.js';
+import genreLists from './utils/genreLists.js';
 
 export default {
   home,
@@ -16,5 +17,6 @@ export default {
   search,
   ongoingAnime,
   completeAnime,
-  batch
+  batch,
+  genreLists
 };

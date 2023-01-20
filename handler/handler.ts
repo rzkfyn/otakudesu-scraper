@@ -167,6 +167,19 @@ const batchHandler = async (req: Request, res: Response) => {
   });
 };
 
+
+const genreListsHandler = async (_: Request, res: Response) => {
+  let data;
+  try {
+    data = await otakudesu.genreLists();
+  } catch(e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Error', message: 'Internal server error' });
+  }
+
+  return res.status(200).json({ status: 'Ok', data });
+};
+
 export default {
   searchAnimeHandler,
   homeHandler,
@@ -177,5 +190,6 @@ export default {
   episodeByEpisodeSlugHandler,
   episodeByEpisodeNumberHandler,
   batchByBatchSlugHandler,
-  batchHandler
+  batchHandler,
+  genreListsHandler
 };

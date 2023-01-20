@@ -25,4 +25,6 @@ api.get('/batch/:slug', handler.batchByBatchSlugHandler);
 
 api.get('/anime/:slug/batch', handler.batchHandler);
 
+api.get('/genres', handler.genreListsHandler);
+
 export default api;
