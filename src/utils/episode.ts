@@ -16,7 +16,7 @@ const episode = async ({ episodeSlug, animeSlug, episodeNumber }: {
   }
 
   const { data } = await axios.get(`${BASEURL}/episode/${slug}`);
-  const result = await scrapeEpisode(data);
+  const result = scrapeEpisode(data);
 
   return result;
 };

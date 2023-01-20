@@ -141,13 +141,30 @@ const batchByBatchSlugHandler = async (req: Request, res: Response) => {
 
   let data;
   try {
-    data = await otakudesu.batch(slug);
+    data = await otakudesu.batch({ batchSlug: slug });
   } catch(e) {
     console.log(e);
     return res.status(500).json({ status: 'Error', message: 'Internal server error' });
   }
 
   return res.status(200).json({ status: 'Ok', data });
+};
+
+const batchHandler = async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  
+  let data;
+  try {
+    data = await otakudesu.batch({ animeSlug: slug });
+  } catch(e) {
+    console.log(e);
+    return res.status(500).json({ status: 'Error', message: 'Internal server error' });
+  }
+
+  return data ? res.status(200).json({ status: 'Ok', data }) : res.status(404).json({
+    status: 'Error',
+    message: 'This anime doesn\'t have a batch yet ;_;'
+  });
 };
 
 export default {
@@ -159,5 +176,6 @@ export default {
   completeAnimeHandler,
   episodeByEpisodeSlugHandler,
   episodeByEpisodeNumberHandler,
-  batchByBatchSlugHandler
+  batchByBatchSlugHandler,
+  batchHandler
 };

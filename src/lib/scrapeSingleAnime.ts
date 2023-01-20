@@ -1,6 +1,7 @@
 import { load } from 'cheerio';
 import mapGenres from './mapGenres.js';
 import scrapeAnimeEpisodes from './scrapeAnimeEpisodes.js';
+import getBatch from './getBatch.js';
 import type { anime, episode_list } from '../types/types.js';
 
 const { BASEURL } = process.env;
@@ -29,7 +30,7 @@ const createAnimeData = (
   const release_date = $('.infozin .infozingle p:nth-child(9) span').text()?.replace('Tanggal Rilis: ', '');
   const studio = $('.infozin .infozingle p:nth-child(10) span').text()?.replace('Studio: ', '');
   const genres = mapGenres($('.infozin .infozingle p:last span a').toString());
-  const batch = getBatch($('.venser #serieslist ~ .episodelist ul li:first-child').toString());
+  const batch = getBatch(html);
   const recommendations = getRecomendations($('#recommend-anime-series .isi-recommend-anime-series .isi-konten').toString());
 
   if(!episode_lists) return undefined;
@@ -43,19 +44,6 @@ const getSynopsis = (html: string) => {
   const $ = load(html);
   const synopsis = $('.sinopc').text().split('<p>').map(item => item.replace('</p>', '\n').replace('&nbsp', '')).join('');
   return synopsis;
-};
-
-const getBatch = (html: string) => {
-  const $ = load(html);
-  console.log($().toString());
-  const batch = $('span:first-child a').attr('href');
-  const uploaded_at = $('span.zeebr:first').text();
-
-  return batch?.match('episode') ? null : {
-    slug: batch?.replace(`${BASEURL}/batch/`, '').replace('/', ''),
-    otakudesu_url: batch,
-    uploaded_at
-  };
 };
 
 const getPoster = (html: string): string | undefined => {

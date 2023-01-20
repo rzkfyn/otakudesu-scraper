@@ -23,4 +23,6 @@ api.get('/episode/:slug', handler.episodeByEpisodeSlugHandler);
 
 api.get('/batch/:slug', handler.batchByBatchSlugHandler);
 
+api.get('/anime/:slug/batch', handler.batchHandler);
+
 export default api;
