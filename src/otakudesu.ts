@@ -8,6 +8,7 @@ import ongoingAnime from './utils/ongoingAnime.js';
 import completeAnime from './utils/completeAnime.js';
 import batch from './utils/batch.js';
 import genreLists from './utils/genreLists.js';
+import animeByGenre from './utils/animeByGenre.js';
 
 export default {
   home,
@@ -18,5 +19,6 @@ export default {
   ongoingAnime,
   completeAnime,
   batch,
-  genreLists
+  genreLists,
+  animeByGenre
 };
