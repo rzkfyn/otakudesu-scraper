@@ -181,11 +181,16 @@ const genreListsHandler = async (_: Request, res: Response) => {
 };
 
 const animeByGenreHandler = async (req: Request, res: Response) => {
-  const { slug } = req.params;
+  const { slug, page } = req.params;
+
+  if (page) {
+    if (!parseInt(page)) return res.status(400).json({ status: 'Error', message: 'The page parameter must be a number!' });
+    if (parseInt(page) < 1) return res.status(400).json({ status: 'Error', message: 'The page parameter must be greater than 0!' });
+  }
 
   let data;
   try {
-    data = await otakudesu.animeByGenre(slug);
+    data = await otakudesu.animeByGenre(slug, page);
   } catch(e) {
     console.log(e);
     return res.status(500).json({ status: 'Error', message: 'Internal server error' });
