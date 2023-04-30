@@ -8,6 +8,7 @@ import {
 } from '../types/types.js';
 
 const { BASEURL } = process.env;
+console.log(BASEURL);
 const home = async (): Promise<{ ongoing_anime: ongoingAnimeType[], complete_anime: completeAnimeType[] }> => {
   const { data } = await axios.get(BASEURL as string);
   const $ = load(data);
