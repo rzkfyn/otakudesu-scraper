@@ -126,7 +126,7 @@ const episodeByEpisodeNumberHandler = async (req: Request, res: Response) => {
 
   let data;
   try {
-    data = await otakudesu.episode({ animeSlug, episodeNumber: parseInt(episode) - 1 });
+    data = await otakudesu.episode({ animeSlug, episodeNumber: parseInt(episode) });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ status: 'Error', message: 'Internal server error' });
