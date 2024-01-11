@@ -1,7 +1,6 @@
 import { load } from 'cheerio';
 import type { completeAnime } from '../types/types.js';
 
-const { BASEURL } = process.env;
 const scrapeCompleteAnime = (html: string): completeAnime[] => {
   const result: completeAnime[] = [];
   const animes = html.split('</li>')
@@ -13,7 +12,7 @@ const scrapeCompleteAnime = (html: string): completeAnime[] => {
 
     result.push({
       title: $('.detpost .thumb .thumbz .jdlflm').text(),
-      slug: $('.detpost .thumb a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
+      slug: $('.detpost .thumb a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', ''),
       poster: $('.detpost .thumb .thumbz img').attr('src'),
       episode_count: $('.detpost .epz').text().trim().replace(' Episode', ''),
       rating: $('.detpost .epztipe').text().trim(),

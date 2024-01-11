@@ -31,7 +31,7 @@ const scrapeAnimeByGenre = (html: string) => {
 
     result.push({
       title: $('.col-anime .col-anime-title a').text(),
-      slug: $('.col-anime .col-anime-trailer a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
+      slug: $('.col-anime .col-anime-trailer a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', ''),
       poster: $('.col-anime .col-anime-cover img').attr('src'),
       rating: $('.col-anime .col-anime-rating').text() ?? null,
       episode_count: episodeCount === '' ? null : episodeCount,

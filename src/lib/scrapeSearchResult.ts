@@ -2,7 +2,6 @@ import { load } from 'cheerio';
 import mapGenres from './mapGenres.js';
 import type { searchResultAnime } from '../types/types.js';
 
-const { BASEURL } = process.env;
 const scrapeSearchResult = (html: string): searchResultAnime[] => {
   const $ = load(html);
   const animes = $('.chivsrc li').toString()
@@ -18,7 +17,7 @@ const scrapeSearchResult = (html: string): searchResultAnime[] => {
 
     searchResult.push({
       title: $('h2 a').text(),
-      slug: $('h2 a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
+      slug: $('h2 a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', ''),
       poster: $('img').attr('src'),
       genres,
       status: $('.set:nth-child(4)').text()?.replace('Status : ', ''),

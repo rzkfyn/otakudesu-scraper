@@ -1,7 +1,6 @@
 import { load } from 'cheerio';
 import type { ongoingAnime } from '../types/types.js';
 
-const { BASEURL } = process.env;
 const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
   const result: ongoingAnime[] = [];
   const animes = html.split('</li>')
@@ -13,7 +12,7 @@ const scrapeOngoingAnime = (html: string): ongoingAnime[] => {
 
     result.push({
       title: $('.detpost .thumb .thumbz .jdlflm').text(),
-      slug: $('.detpost .thumb a').attr('href')?.replace(`${BASEURL}/anime/`, '').replace('/', ''),
+      slug: $('.detpost .thumb a').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', ''),
       poster: $('.detpost .thumb .thumbz img').attr('src'),
       current_episode: $('.detpost .epz').text().trim(),
       release_day: $('.detpost .epztipe').text().trim(),

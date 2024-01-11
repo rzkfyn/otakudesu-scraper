@@ -1,24 +1,24 @@
 # Otakudesu Unofficial API
 
-An unofficial API scraper for [otakudesu](https://otakudesu.lol). Otakudesu is a web that provides anime with Indonesian subtitle.
+An UNOFFICIAL rest API for [otakudesu](https://otakudesu.lol). Otakudesu is a web that provides anime with Indonesian subtitle.
 
 ## Quick Documentation 
 
 | End Point | Method | Params | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
-| `/api/v1/home` | `GET` | `-`  | returns latest ongoing anime update & currently finished anime resources | [`/api/v1/home`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/home) |
-| `/api/v1/ongoing-anime/:page` | `GET` | - `page` (opt, number) | returns ongoing anime resources | [`/api/v1/ongoing-anime`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/ongoing-anime) |
-| `/api/v1/complete-anime/:page` | `GET` | - `page` (opt, number)  | returns finished anime resources | [`/api/v1/complete-anime/10`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/complete-anime/10) |
-| `/api/v1/search/:keyword` | `GET` | - `keyword` (required, string)  | returns anime search results from the given keyword | [`/api/v1/search/Hibike Euphonium`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/search/Hibike%20Euphonium) |
-| `/api/v1/anime/:slug` | `GET` | - `slug` (required, string)  | returns single anime resource | [`/api/v1/anime/kuzu-honkai-subtitle-indonesia`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/anime/kuzu-honkai-subtitle-indonesia) |
-| `/api/v1/anime/:slug/episodes` | `GET` | - `slug` (required, string)  | returns anime episode lists resource (the `/anime/:slug` enpoint's also return the anime episode lists) | [`/api/v1/anime/kuzu-honkai-subtitle-indonesia/episodes`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/anime/kuzu-honkai-subtitle-indonesia/episodes) |
-| `/api/v1/anime/:slug/episodes/:episode` | `GET` | - `slug` (required, string) <br> - `episode` (required, number)  | returns episode resource (with stream url and download urls) | [`/api/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1) |
-| `/api/v1/episode/:slug` | `GET` | - `slug` (required, string)  | returns single episode data by the episode's slug | [`/api/v1/episode/kzhnkai-episode-1-sub-indo`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/episode/kzhnkai-episode-1-sub-indo) |
-| `/api/v1/genres` | `GET` | - | returns genre lists resource | [`/api/v1/genres`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/genres) |
-| `/api/v1/genres/:slug` | `GET` | - `slug` (required, string)  | returns anime lists by the genre's slug | [`/api/v1/genres/sports`](https://otakudesu-unofficial-api.rzkfyn.xyz/api/v1/genres/sports) |
+| `/v1/home` | `GET` | `-`  | returns latest ongoing anime update & currently finished anime resources | [`/v1/home`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/home) |
+| `/v1/ongoing-anime/:page` | `GET` | - `page` (opt, number) | returns ongoing anime resources | [`/v1/ongoing-anime`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/ongoing-anime) |
+| `/v1/complete-anime/:page` | `GET` | - `page` (opt, number)  | returns finished anime resources | [`/v1/complete-anime/10`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/complete-anime/10) |
+| `/v1/search/:keyword` | `GET` | - `keyword` (required, string)  | returns anime search results from the given keyword | [`/v1/search/Hibike Euphonium`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/search/Hibike%20Euphonium) |
+| `/v1/anime/:slug` | `GET` | - `slug` (required, string)  | returns single anime resource | [`/v1/anime/kuzu-honkai-subtitle-indonesia`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia) |
+| `/v1/anime/:slug/episodes` | `GET` | - `slug` (required, string)  | returns anime episode lists resource (the `/anime/:slug` enpoint's also return the anime episode lists) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia/episodes) |
+| `/v1/anime/:slug/episodes/:episode` | `GET` | - `slug` (required, string) <br> - `episode` (required, number)  | returns episode resource (with stream url and download urls) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1) |
+| `/v1/episode/:slug` | `GET` | - `slug` (required, string)  | returns single episode data by the episode's slug | [`/v1/episode/kzhnkai-episode-1-sub-indo`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/episode/kzhnkai-episode-1-sub-indo) |
+| `/v1/genres` | `GET` | - | returns genre lists resource | [`/v1/genres`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/genres) |
+| `/v1/genres/:slug` | `GET` | - `slug` (required, string)  | returns anime lists by the genre's slug | [`/v1/genres/sports`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/genres/sports) |
 
 ## Response Example
-> response for `/api/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1` or `/api/v1/episode/kzhnkai-episode-1-sub-indo`  
+> response for `/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1` or `/v1/episode/kzhnkai-episode-1-sub-indo`  
 ```json5
 {
   "status": "Ok",
@@ -121,7 +121,7 @@ An unofficial API scraper for [otakudesu](https://otakudesu.lol). Otakudesu is a
 ```
 
 ### Installation & Configuration
-> note: run the command without the `$` symbol#
+> note: run the command without the `$` symbol
 
 - Open up your terminal, then run this command to clone this repo
 ```bash
@@ -138,8 +138,10 @@ $ cd otakudesu-unofficial-api
 $ npm install
 ``` 
 
-- to run a development server, run
+- To run a development server, run
 ```bash
 $ npm run dev
 ```
-- the server accessible from a browser on `http://localhost:3000`
+- The server accessible from a browser on `http://localhost:3000`
+
+Got suggestions or finding bugs and you know how to fix? Pull requests are welcomed.

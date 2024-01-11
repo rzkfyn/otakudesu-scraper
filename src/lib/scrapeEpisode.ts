@@ -112,7 +112,7 @@ const getPrevEpisode = ($: CheerioAPI) => {
   if (!$('.flir a:first').attr('href')?.startsWith(`${BASEURL}/episode/`)) return null;
 
   return {
-    slug: $('.flir a:first').attr('href')?.replace(`${BASEURL}/episode/`, '')?.replace('/', ''),
+    slug: $('.flir a:first').attr('href')?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/episode\//, '')?.replace('/', ''),
     otakudesu_url: $('.flir a:first').attr('href'),
   };
 };

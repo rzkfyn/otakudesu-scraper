@@ -4,7 +4,6 @@ import scrapeAnimeEpisodes from './scrapeAnimeEpisodes.js';
 import getBatch from './getBatch.js';
 import type { anime, episode_list } from '../types/types.js';
 
-const { BASEURL } = process.env;
 const scrapeSingleAnime = (html: string) => {
   const result = createAnimeData(
     html,
@@ -68,7 +67,7 @@ const getRecomendations = (html: string) => {
     const title = $('.judul-anime').text();
     const poster = $('.isi-anime img').attr('src');
     const otakudesu_url = $('.isi-anime a').attr('href');
-    const slug = otakudesu_url?.replace(`${BASEURL}/anime/`, '').replace('/', '');
+    const slug = otakudesu_url?.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', '');
     result.push({
       title,
       slug,
