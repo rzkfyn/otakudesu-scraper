@@ -6,16 +6,16 @@ An UNOFFICIAL rest API for [otakudesu](https://otakudesu.lol). Otakudesu is a we
 
 | End Point | Method | Params | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
-| `/v1/home` | `GET` | `-`  | returns latest ongoing anime update & currently finished anime resources | [`/v1/home`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/home) |
-| `/v1/ongoing-anime/:page` | `GET` | - `page` (opt, number) | returns ongoing anime resources | [`/v1/ongoing-anime`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/ongoing-anime) |
-| `/v1/complete-anime/:page` | `GET` | - `page` (opt, number)  | returns finished anime resources | [`/v1/complete-anime/10`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/complete-anime/10) |
-| `/v1/search/:keyword` | `GET` | - `keyword` (required, string)  | returns anime search results from the given keyword | [`/v1/search/Hibike Euphonium`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/search/Hibike%20Euphonium) |
-| `/v1/anime/:slug` | `GET` | - `slug` (required, string)  | returns single anime resource | [`/v1/anime/kuzu-honkai-subtitle-indonesia`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia) |
-| `/v1/anime/:slug/episodes` | `GET` | - `slug` (required, string)  | returns anime episode lists resource (the `/anime/:slug` enpoint's also return the anime episode lists) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia/episodes) |
-| `/v1/anime/:slug/episodes/:episode` | `GET` | - `slug` (required, string) <br> - `episode` (required, number)  | returns episode resource (with stream url and download urls) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1) |
-| `/v1/episode/:slug` | `GET` | - `slug` (required, string)  | returns single episode data by the episode's slug | [`/v1/episode/kzhnkai-episode-1-sub-indo`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/episode/kzhnkai-episode-1-sub-indo) |
-| `/v1/genres` | `GET` | - | returns genre lists resource | [`/v1/genres`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/genres) |
-| `/v1/genres/:slug` | `GET` | - `slug` (required, string)  | returns anime lists by the genre's slug | [`/v1/genres/sports`](https://otakudesu-unofficial-api.rzkfyn.xyz/v1/genres/sports) |
+| `/v1/home` | `GET` | `-`  | returns latest ongoing anime update & currently finished anime resources | [`/v1/home`](https://otakudesu-unofficial-api.vercel.app/v1/home) |
+| `/v1/ongoing-anime/:page` | `GET` | - `page` (opt, number) | returns ongoing anime resources | [`/v1/ongoing-anime`](https://otakudesu-unofficial-api.vercel.app/v1/ongoing-anime) |
+| `/v1/complete-anime/:page` | `GET` | - `page` (opt, number)  | returns finished anime resources | [`/v1/complete-anime/10`](https://otakudesu-unofficial-api.vercel.app/v1/complete-anime/10) |
+| `/v1/search/:keyword` | `GET` | - `keyword` (required, string)  | returns anime search results from the given keyword | [`/v1/search/Hibike Euphonium`](https://otakudesu-unofficial-api.vercel.app/v1/search/Hibike%20Euphonium) |
+| `/v1/anime/:slug` | `GET` | - `slug` (required, string)  | returns single anime resource | [`/v1/anime/kuzu-honkai-subtitle-indonesia`](https://otakudesu-unofficial-api.vercel.app/v1/anime/kuzu-honkai-subtitle-indonesia) |
+| `/v1/anime/:slug/episodes` | `GET` | - `slug` (required, string)  | returns anime episode lists resource (the `/anime/:slug` enpoint's also return the anime episode lists) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes`](https://otakudesu-unofficial-api.vercel.app/v1/anime/kuzu-honkai-subtitle-indonesia/episodes) |
+| `/v1/anime/:slug/episodes/:episode` | `GET` | - `slug` (required, string) <br> - `episode` (required, number)  | returns episode resource (with stream url and download urls) | [`/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1`](https://otakudesu-unofficial-api.vercel.app/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1) |
+| `/v1/episode/:slug` | `GET` | - `slug` (required, string)  | returns single episode data by the episode's slug | [`/v1/episode/kzhnkai-episode-1-sub-indo`](https://otakudesu-unofficial-api.vercel.app/v1/episode/kzhnkai-episode-1-sub-indo) |
+| `/v1/genres` | `GET` | - | returns genre lists resource | [`/v1/genres`](https://otakudesu-unofficial-api.vercel.app/v1/genres) |
+| `/v1/genres/:slug` | `GET` | - `slug` (required, string)  | returns anime lists by the genre's slug | [`/v1/genres/sports`](https://otakudesu-unofficial-api.vercel.app/v1/genres/sports) |
 
 ## Response Example
 > response for `/v1/anime/kuzu-honkai-subtitle-indonesia/episodes/1` or `/v1/episode/kzhnkai-episode-1-sub-indo`  
